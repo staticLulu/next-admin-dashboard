@@ -1,6 +1,4 @@
 "use client";
-
-import React from "react";
 import {
   Table,
   TableHeader,
@@ -10,32 +8,49 @@ import {
   TableCell,
 } from "@nextui-org/react";
 
-interface TableProps<T> {
-  columns: { key: keyof T; header: string }[];
-  data: T[];
+interface Column {
+  key: string;
+  header: string;
+  render?: (row: any) => React.ReactNode;
 }
 
-const DynamicTable = <T,>({ columns, data }: TableProps<T>) => {
+interface DynamicTableProps {
+  columns: Column[];
+  data: any[];
+}
+
+const DynamicTable: React.FC<DynamicTableProps> = ({ columns, data }) => {
   return (
-    <Table aria-label="Dynamic Table" className="dark:bg-slate-800 text-slate-50">
-      <TableHeader className="dark:bg-slate-600">
+    <Table 
+      className="
+        dark:bg-slate-800 
+        text-slate-700 
+        dark:text-slate-50 
+        rounded-xl 
+        shadow-sm
+      "
+    >
+      <TableHeader>
         {columns.map((col) => (
-          <TableColumn key={col.key.toString()}>
+          <TableColumn key={col.key.toString()} className="border">
             {col.header}
           </TableColumn>
         ))}
       </TableHeader>
-      <TableBody>
-        {data.map((row, index) => (
-          <TableRow key={index}>
-            {columns.map((col) => (
-              <TableCell key={col.key.toString()}>
-                {row[col.key] as React.ReactNode}
-              </TableCell>
+      {data.length 
+        ? <TableBody>
+            {data.map((row, index) => (
+              <TableRow key={index}>
+                {columns.map((col) => (
+                  <TableCell key={col.key.toString()} className="border">
+                     {col.render ? col.render(row) : row[col.key]}
+                  </TableCell>
+                ))}
+              </TableRow>
             ))}
-          </TableRow>
-        ))}
-      </TableBody>
+          </TableBody>
+        : <TableBody emptyContent={"No rows to display."}>{[]}</TableBody>
+      }
     </Table>
   );
 };

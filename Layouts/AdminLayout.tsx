@@ -43,9 +43,6 @@ export default function AdminLayout({
   ];
 
   const title = menuItems.find((i: any) => i.label);
-  console.log("title??", title);
-  
-
   return (
     <>
       <div className="flex h-screen overflow-hidden">

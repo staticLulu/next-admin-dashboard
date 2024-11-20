@@ -1,31 +1,21 @@
-import DynamicTable from "@/components/DynamicTable";
-import Table from "@/components/DynamicTable";
 import AdminLayout from "@/Layouts/AdminLayout";
-import { usersProps } from "@/types/user";
+import ClientUsersPage from "@/components/ClientUser";
 
-const UsersPage = () => {
+const fetchUsers = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users", {
+    next: { revalidate: 3600 },
+  });
+  return res.json();
+};
 
-  // Define the columns
-  const columns: any[] = [
-    { key: "id", header: "ID" },
-    { key: "name", header: "Name" },
-    { key: "age", header: "Age" },
-  ];
-
-  // Define the data
-  const data: usersProps[] = [
-    { id: 1, name: "Alice", age: 25 },
-    { id: 2, name: "Bob", age: 30 },
-    { id: 3, name: "Charlie", age: 35 },
-  ];
+const UsersPage = async () => {
+  const [ users ] = await Promise.all([fetchUsers()]);
 
   return (
     <AdminLayout>
-      
-      <DynamicTable columns={columns} data={data} />
-      
+      <ClientUsersPage users={users} />
     </AdminLayout>
-  )
-}
+  );
+};
 
 export default UsersPage;

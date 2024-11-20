@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import ClickOutside from "./ClickOutside";
@@ -9,11 +9,27 @@ import SidebarItem from "./SidebarItem";
 import { ArrowLeftIcon, TargetIcon } from "@radix-ui/react-icons";
 import { Button } from "@nextui-org/button";
 import { SidebarProps } from "@/models/sidebar.model";
+import { Spinner } from "@nextui-org/react";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen, menuItems }: SidebarProps) => {
   const router = useRouter();
-
+  const [loading, setLoading] = useState<boolean>(false);
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
+
+  const handleLogout = () => {
+    setLoading(true);
+    setTimeout(() => {
+      router.push("/");
+    }, 3000);
+  };
+
+  if (loading) {
+    return (
+      <div className="h-screen w-screen flex items-center justify-center">
+        <Spinner size="lg" color="danger" className="mt-4" />
+      </div>
+    )
+  }
 
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
@@ -98,7 +114,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, menuItems }: SidebarProps) => {
             dark:text-slate-100 
             text-gray-600
           " 
-          onClick={() => router.push('/')}
+          onClick={handleLogout}
         >
           Logout
         </Button>

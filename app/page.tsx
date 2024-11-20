@@ -17,12 +17,12 @@ export default function Home() {
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center">
       {loading ? 
-        <Spinner size="lg" color="default" className="mt-4" />
+        <Spinner size="lg" color="success" className="mt-4" />
         : <Button 
             onPress={handleLogin} 
             disabled={loading} 
             size="lg"
-            className="bg-slate-700/[.30] shadow-sm text-slate-700"
+            className="bg-green-600 shadow-sm text-white"
           >
             Login 
           </Button>
