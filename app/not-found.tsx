@@ -4,7 +4,7 @@ import Link from "next/link";
 const NotFound = () => {
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center">
-      <div className="bg-[#D4BEE4]/70 p-5 rounded-xl shadow-sm w-[400px]">
+      <div className="bg-primary/[.10] p-5 rounded-xl shadow-sm w-auto sm:w-[600px] h-auto sm:py-10">
         <p className="text-3xl font-semibold text-center">404</p>
         <Link
           href="/"
@@ -13,9 +13,9 @@ const NotFound = () => {
           <DoubleArrowLeftIcon 
             width={22}
             height={22}
-            className="animate-pulse text-purple-500 group-hover:-translate-x-3 transition-transform"
+            className="animate-pulse text-primary group-hover:-translate-x-3 transition-transform"
           />
-          <p>Back to Home 🙉</p>
+          Back to Home 🙉
         </Link>
       </div>
     </div>

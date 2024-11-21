@@ -10,6 +10,7 @@ import { ArrowLeftIcon, TargetIcon } from "@radix-ui/react-icons";
 import { Button } from "@nextui-org/button";
 import { SidebarProps } from "@/models/sidebar.model";
 import { Spinner } from "@nextui-org/react";
+import LoadingIndicator from "./LoadingIndicator";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen, menuItems }: SidebarProps) => {
   const router = useRouter();
@@ -25,9 +26,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, menuItems }: SidebarProps) => {
 
   if (loading) {
     return (
-      <div className="h-screen w-screen flex items-center justify-center">
-        <Spinner size="lg" color="danger" className="mt-4" />
-      </div>
+      <LoadingIndicator size="lg" color="danger" className="mt-4" />
     )
   }
 

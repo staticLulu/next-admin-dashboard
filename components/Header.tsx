@@ -93,17 +93,17 @@ const HamburgerToggle = ({
   </button>
 );
 
-// Logo Component
-const Logo = () => (
-  <Link className="block flex-shrink-0 lg:hidden" href="/">
-    <Image
-      width={32}
-      height={32}
-      src={"/images/logo/logo-icon.svg"}
-      alt="Logo"
-    />
-  </Link>
-);
+// // Logo Component
+// const Logo = () => (
+//   <Link className="block flex-shrink-0 lg:hidden" href="/">
+//     <Image
+//       width={32}
+//       height={32}
+//       src={"/images/logo/logo-icon.svg"}
+//       alt="Logo"
+//     />
+//   </Link>
+// );
 
 // Main Header Component
 const Header = ({ sidebarOpen, setSidebarOpen, title }: HeaderProps) => {
@@ -140,7 +140,7 @@ const Header = ({ sidebarOpen, setSidebarOpen, title }: HeaderProps) => {
             sidebarOpen={sidebarOpen}
             setSidebarOpen={setSidebarOpen}
           />
-          <Logo />
+          {/* <Logo /> */}
         </div>
 
         {/* Center Section */}

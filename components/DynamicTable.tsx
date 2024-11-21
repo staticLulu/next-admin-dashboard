@@ -22,13 +22,8 @@ interface DynamicTableProps {
 const DynamicTable: React.FC<DynamicTableProps> = ({ columns, data }) => {
   return (
     <Table 
-      className="
-        dark:bg-slate-800 
-        text-slate-700 
-        dark:text-slate-50 
-        rounded-xl 
-        shadow-sm
-      "
+      aria-label="Dynamic table"
+      className="dark:bg-slate-800 text-slate-700 dark:text-slate-50 rounded-xl shadow-sm"
     >
       <TableHeader>
         {columns.map((col) => (
