@@ -10,15 +10,17 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   disabled?: boolean;
+  size?: "sm" | "md" | "lg" | undefined;
 }
 
-const DynamicButton: React.FC<ButtonProps> = ({
+const DynamicButton = ({
   label,
   variant = "primary",
   onClick,
   className,
   disabled,
-}) => {
+  size,
+}: ButtonProps) => {
   const baseStyles = "px-4 py-2 rounded-md font-semibold focus:outline-none";
   const variantStyles = {
     primary: "bg-blue-500 text-white hover:bg-blue-600",
@@ -31,6 +33,7 @@ const DynamicButton: React.FC<ButtonProps> = ({
       className={clsx(baseStyles, variantStyles[variant], className)}
       onClick={onClick}
       disabled={disabled}
+      size={size}
     >
       {label}
     </Button>

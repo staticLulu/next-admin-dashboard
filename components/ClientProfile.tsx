@@ -8,6 +8,7 @@ import DynamicSelectButton from "./DynamicSelect";
 import DynamicSelect from "./DynamicSelect";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import LoadingIndicator from "./LoadingIndicator";
 
 const ClientProfile = ({users, animals}:{users: any; animals: any}) => {
   const router = useRouter();
@@ -17,7 +18,6 @@ const ClientProfile = ({users, animals}:{users: any; animals: any}) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleRefresh = () => {
-    setIsRefreshing(true);
     setTimeout(() => {
       setIsRefreshing(false);
       router.refresh();
@@ -26,7 +26,6 @@ const ClientProfile = ({users, animals}:{users: any; animals: any}) => {
   };
 
   const handleAgreement = () => {
-    setLoading(true);
     setIsOpenHelloworld(false);
     setTimeout(() => {
       router.push("/");
@@ -97,20 +96,18 @@ const ClientProfile = ({users, animals}:{users: any; animals: any}) => {
             <div className="w-full">
               <p className="py-5 text-center text-base">hello welcome somewhere you no plan hasha!!!</p>
               <div className="flex justify-between ">
-                <Button 
-                  size="sm" 
-                  onClick={handleDisagreement}
-                  color="warning"
-                >
-                  Disagree
-                </Button>
-                <Button 
-                  color="success" 
-                  size="sm" 
-                  onClick={handleAgreement}
-                >
-                  Agree
-                </Button>
+                <DynamicButton 
+                  onClick={handleDisagreement} 
+                  variant="primary" 
+                  label="Disagree" 
+                  size="sm"
+                />
+                <DynamicButton 
+                  onClick={handleAgreement} 
+                  variant="primary" 
+                  label="Agree" 
+                  size="sm"
+                />
               </div>
             </div>
           }
@@ -127,7 +124,7 @@ const ClientProfile = ({users, animals}:{users: any; animals: any}) => {
             grid-cols-2 
             gap-4 
             w-full 
-            bg-primary/[.20] 
+            bg-primary/[.14] 
             rounded-lg 
             shadow-sm 
             items-start

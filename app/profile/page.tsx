@@ -17,6 +17,7 @@ const ProfilePage = async () => {
     label: user.name,
     icon: <> <PersonIcon width={16} height={16} /> </>,
   }));
+  
   return (
     <AdminLayout>
       <ClientProfile users={transformedUsers} animals={animals} />
