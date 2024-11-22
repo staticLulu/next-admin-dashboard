@@ -8,7 +8,8 @@ import DynamicSelectButton from "./DynamicSelect";
 import DynamicSelect from "./DynamicSelect";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import LoadingIndicator from "./LoadingIndicator";
+import DynamicModal from "./DynamicModal";
+import { useDisclosure } from "@nextui-org/react";
 
 const ClientProfile = ({users, animals}:{users: any; animals: any}) => {
   const router = useRouter();
@@ -16,6 +17,13 @@ const ClientProfile = ({users, animals}:{users: any; animals: any}) => {
   const [isOpenMe, setIsOpenMe] = useState<boolean>(false);
   const [isOpenHelloworld, setIsOpenHelloworld] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
+  const {
+    isOpen: isOpenModal2, 
+    onOpen: openModal2, 
+    onOpenChange: onOpenChangeModal2, 
+    onClose: onCloseModal2
+  } = useDisclosure();
 
   const handleRefresh = () => {
     setTimeout(() => {
@@ -146,7 +154,43 @@ const ClientProfile = ({users, animals}:{users: any; animals: any}) => {
         </div>
       </SectionProfile>
       <SectionProfile title="Modal">
-        hello world
+        <DynamicButton label="Helloworld" onClick={onOpen} size="sm" />
+        <DynamicModal 
+          isOpen={isOpen} 
+          bodyContent={"helloworld!!"} 
+          title="Dynamic modal" 
+          onOpenChange={onOpenChange} 
+          footerButtons={
+            <>
+              <DynamicButton label="Cancel" onClick={onClose} size="sm" variant="secondary" />
+              <DynamicButton label="OK" onClick={onClose} size="sm" />
+            </>
+          }
+        />
+
+        <DynamicButton label="Helloworld" onClick={openModal2} variant="outline" size="sm"  />
+        <DynamicModal 
+          isOpen={isOpenModal2} 
+          size="2xl"
+          bodyContent={"helloworld!!"} 
+          title="Dynamic modal" 
+          onOpenChange={onOpenChangeModal2} 
+          footerButtons={
+            <>
+              <DynamicButton label="Cancel" onClick={onCloseModal2} size="sm" variant="primary" />
+              <DynamicButton 
+                label="OK" 
+                onClick={() => {
+                  onCloseModal2;
+                  router.push('/users');
+                }} 
+                size="sm" 
+                variant="outline" 
+                className=" shadow-indigo-500/20" 
+              />
+            </>
+          }
+        />
       </SectionProfile>
     </div>
   )
