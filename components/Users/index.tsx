@@ -1,10 +1,8 @@
-// ClientUsersPage.tsx (Client Component)
 "use client";
-
 import { useRouter } from "next/navigation";
 import { Button } from "@nextui-org/button";
-import DynamicTableII from "./DynamicTableII";
-import DynamicTable from "./DynamicTable";
+import DynamicTableII from "../DynamicTableII";
+import DynamicTable from "../DynamicTable";
 
 const ClientUsersPage = ({ users }: { users: any[]; }) => {
   const router = useRouter();
@@ -18,7 +16,7 @@ const ClientUsersPage = ({ users }: { users: any[]; }) => {
   };
 
   const handleDetail = (id: number) => {
-    router.push(`/users/detail?=${id}`);
+    router.push(`/users/${id}?info=details`);
   };
 
   const user_columns: any[] = [
