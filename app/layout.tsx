@@ -1,10 +1,7 @@
-'use client'
-
 import localFont from "next/font/local";
 import "./globals.css";
 import { NextUIProvider } from "@nextui-org/react";
-import LoadingIndicator from "@/components/LoadingIndicator";
-import { useState } from "react";
+import { Metadata } from "next";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,13 +14,19 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+export const metadata: Metadata ={
+  title: {
+    absolute: "",
+    default: "Admin Dashboard"
+  },
+  description: "Hello world welcome to admin dashboard"
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [loading, setLoading] = useState<boolean>(false);
-
   return (
     <html lang="en">
       <body 
@@ -31,9 +34,7 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <NextUIProvider>
-          {loading ? 
-            <LoadingIndicator color="secondary" size="lg" /> : <>{children}</>
-          }
+          {children}
         </NextUIProvider>
       </body>
     </html>

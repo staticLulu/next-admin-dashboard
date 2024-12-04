@@ -1,5 +1,13 @@
+import ClientUsersPage from "@/components/Users";
 import AdminLayout from "@/Layouts/AdminLayout";
-import ClientUsersPage from "@/components/ClientUser";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata ={
+  title: {
+    absolute: "User Analytics",
+  },
+}
 
 const fetchUsers = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/users", {

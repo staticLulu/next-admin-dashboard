@@ -1,3 +1,4 @@
+'use client'
 import Link from "next/link";
 
 const SidebarItem = ({ item, pageName, setPageName }: any) => {
