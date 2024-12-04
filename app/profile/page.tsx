@@ -2,6 +2,13 @@ import ClientProfile from "@/components/ClientProfile";
 import AdminLayout from "@/Layouts/AdminLayout";
 import { fetchUsers } from "../dashboard/page";
 import { PersonIcon } from "@radix-ui/react-icons";
+import { Metadata } from "next";
+
+export const metadata: Metadata ={
+  title: {
+    absolute: "Profile User",
+  },
+}
 
 const ProfilePage = async () => {
   const [ users ] = await Promise.all([fetchUsers()]);

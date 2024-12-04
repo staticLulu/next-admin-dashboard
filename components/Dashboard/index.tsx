@@ -1,10 +1,7 @@
 'use client'
-
-import DynamicCard from "./DynamicCard";
 import Image from "next/image";
-import LoadingIndicator from "./LoadingIndicator";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import DynamicCard from "../DynamicCard";
 
 interface Company {
   name: string;
